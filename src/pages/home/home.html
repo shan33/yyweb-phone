@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>选择您感兴趣的内容</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div padding>
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="founds">
+      发现
+    </ion-segment-button>
+    <ion-segment-button value="search">
+      查找
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<div [ngSwitch]="segment">
+  <ion-list *ngSwitchCase="'founds'">
+    <ion-card (click)="openOtherPage(1)">
+      <img src="/public/img/dance6.jpg"/>
+      <div class="card-title">文化</div>
+      <div class="card-subtitle">民族文化内容</div>
+    </ion-card>
+    <ion-card (click)="openOtherPage(2)">
+      <img src="/public/img/develop.jpg"/>
+      <div class="card-title">交流</div>
+      <div class="card-subtitle">交流中心</div>
+    </ion-card>
+    <ion-card (click)="openOtherPage(3)">
+      <img src="/public/img/people.jpg"/>
+      <div class="card-title">个人中心</div>
+      <div class="card-subtitle"></div>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-list *ngSwitchCase="'search'">
+    <!-- <chat-item></chat-item> -->
+    <!-- <culture-item></culture-item> -->
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+      <ion-item *ngFor="let item of items" (click)="openOtherPage(item)">
+        {{ item }}
+      </ion-item>
+  </ion-list>
+</div>
+  
+</ion-content>

@@ -1,0 +1,28 @@
+culture-page{
+}
+
+
+
+.card {
+    position: relative;
+    height: 300px;
+    width: 80%;
+    margin: 5% 10%;
+}
+
+.card-title {
+    position: absolute;
+    top: 3%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #000;
+}
+
+.card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    color: #000;
+}

@@ -1,0 +1,18 @@
+<ion-header>
+	  <ion-navbar>
+	    <ion-title>
+	    	文化介绍
+	    </ion-title>
+	  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list >
+		<ion-card class="card" ion-item *ngFor="let cultureItem of cultureTypes" (click)="openDetailPage($event)">
+		    <img src="{{cultureItem.src}}" alt="{{cultureItem.alt}}"/>
+		    <div class="card-title">{{cultureItem.title}}</div>
+		    <div class="card-subtitle">{{cultureItem.subtitle}}</div>
+	  	</ion-card>
+	</ion-list>
+
+</ion-content>
