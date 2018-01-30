@@ -10,10 +10,17 @@
   <ion-icon  name="home"></ion-icon>
   talkingPage
   <ion-list>
-  	<!-- <chat-item *ngFor="let chatItem of items">
-      
-    </chat-item> -->
-    <chat-item></chat-item>
-    <chat-item></chat-item>
+  	<chat-item *ngFor="let chatItem of items">
+      <ion-card class="card-detail" *ngFor="let com of items">
+          <ion-card-header>
+            <p><b>{{com.username}}</b>: {{com.userTitle}}
+            <label>{{com.commentIndex}}</label>
+            <label>{{com.userIndex}}</label></p> 
+            <br>
+          </ion-card-header><br>
+        <ion-card-content class="card-content-detail">{{com.content}}
+         </ion-card-content>
+      </ion-card>
+    </chat-item>
   </ion-list>
 </ion-content>

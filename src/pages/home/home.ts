@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Events} from 'ionic-angular';
+import { NavController, Events, AlertController} from 'ionic-angular';
 
 import { CulturePage } from '../culture/culture'
 import { TalkingPage } from '../talking/talking'
@@ -14,7 +14,7 @@ import { PersonPage } from '../person/person'
 export class HomePage {
   items;
   segment: string = "founds";
-  constructor(public navCtrl: NavController, public events: Events) {
+  constructor(public navCtrl: NavController, public events: Events, public alertCtrl: AlertController) {
     this.initializeItems();
     
   }
@@ -53,8 +53,9 @@ export class HomePage {
   openOtherPage(item) {
 
   	console.log('open other page');
-    if (item == 1)
-    	this.navCtrl.push(CulturePage);
+    if (item == 1) {
+      this.navCtrl.push(CulturePage);
+    }
     else if (item == 2)
       this.navCtrl.push(TalkingPage);
     else if (item == 3)

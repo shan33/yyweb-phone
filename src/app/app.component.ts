@@ -19,6 +19,9 @@ export class MyApp {
 
   pages: Array<{title: string, icon: string, component: any}>;
 
+  myHeight: string = "1%";
+  myWidth: string = "20%";
+
   app: any = {
     user: '游客'
   };
@@ -30,9 +33,8 @@ export class MyApp {
 
     this.pages = [
       { title: '主页', icon: 'home', component: HomePage },
-      { title: '联系我们', icon: 'at',  component: ListPage },
       { title: '个人中心', icon: 'person', component: HomePage},
-      { title: '内容', icon: 'disc', component: ListPage},
+      { title: '联系我们', icon: 'at',  component: ListPage },
       { title: '登录/注册', icon: 'happy', component: LoginPage},
     ];
 

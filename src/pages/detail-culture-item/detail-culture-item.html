@@ -21,31 +21,46 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="cards-bg">
 	
 	<div>
 		<ion-img src="../public/img/drink.jpg"></ion-img>
 	</div>
 	<ion-segment [(ngModel)]="detailChoose" color="primary">
-	    <ion-segment-button value="评论" (ionSelect)="selectedComments()">
+	    <ion-segment-button value="comment" (click)="selectedComments()">
 	      评论
 	    </ion-segment-button>
-	    <ion-segment-button value="详情" (ionSelect)="selectedDetails()">
+	    <ion-segment-button value="detail" (click)="selectedDetails()">
 	      详情
 	    </ion-segment-button>
 	</ion-segment>
 
-	<div>
-		<p>{{detailItem.choose}}</p><hr>
-	   	<ion-card *ngFor="let i of items">
-	   		<ion-card-header>
-			    Header
-			  </ion-card-header>
-			<ion-card-content>{{i}}fhasjhfusakhfudnsajkfhdjk </ion-card-content>
-		</ion-card>
-
-		<ion-infinite-scroll (ionInfinite)="doInfiniteMoreComment($event)">
-		   <ion-infinite-scroll-content></ion-infinite-scroll-content>
-		</ion-infinite-scroll>	
+	<p>{{detailItem.chooseComments? '评论':'详情'}}</p><hr>
+	
+	<div [ngSwitch]="detailChoose">
+		<div *ngSwitchCase="'comment'"> 
+			<ion-card class="card-detail" *ngFor="let com of items" >
+		   		<ion-card-header class="card-title-detail">
+				    <p>
+				    	<b>{{com.username}}</b>:
+				    	<label>{{com.commentIndex}}</label>
+				    	<label>{{com.userIndex}}</label>{{com.content}}
+				    </p> 
+				    <br/><hr/>
+				    <a (click)="response()">回复</a>
+					<a>举报</a><br/>
+					<input class="{{responseBox? show:hidden}}" placeholder="to {{com.username}}: ">
+				</ion-card-header><br/>
+				
+			</ion-card>
+			
+			<ion-infinite-scroll (ionInfinite)="doInfiniteMoreComment($event)">
+			   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+			</ion-infinite-scroll>
+		</div>
+		<div *ngSwitchCase="'detail'">
+		   	<!-- <p>详情</p> -->
+			
+		</div>
 	</div>
 </ion-content>

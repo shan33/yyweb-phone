@@ -6,13 +6,17 @@
 	  </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	<ion-list >
-		<ion-card class="card" ion-item *ngFor="let cultureItem of cultureTypes" (click)="openDetailPage($event)">
-		    <img src="{{cultureItem.src}}" alt="{{cultureItem.alt}}"/>
-		    <div class="card-title">{{cultureItem.title}}</div>
-		    <div class="card-subtitle">{{cultureItem.subtitle}}</div>
-	  	</ion-card>
-	</ion-list>
+<ion-content padding class="topClass">
+	<ion-grid>
+		<ion-row>
+			<ion-col col-3  *ngFor="let cultureItem of cultureTypes" >
+				<div><ion-img width="50px" height="35px" src="{{cultureItem.src}}"></ion-img></div>
+				<!-- <br> -->
+				<ion-badge (click)="openDetailPage($event)"> {{cultureItem.title}}</ion-badge>
+				<label #index class="hidden">{{cultureItem.index}}</label>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	
 
 </ion-content>

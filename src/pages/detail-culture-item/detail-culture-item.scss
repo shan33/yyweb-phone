@@ -1,16 +1,41 @@
 page-detail-culture-item {
 	background-color: #eee;
+	padding: 0;	
 }
 
 ion-img {
 	position: relative;
-	width: 80%;
+	width: 100%;
 	height: 250px;
 	left: 10%;
 }
 
-ion-card {
+.card-detail {
 	position: relative;
-	height: 10%;
-	width: 80%;
+	height: 150px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.card-title-detail {
+    width: 100%;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+}
+
+.card-title-detail input{
+
+    width: 100%;
+    height: 10%;
+    border: solid 1px #aaa;
+    font: 0.5em;
+}
+
+
+.card-title-detail label{
+   font: 0.5em;
+}
+.card-title-detail a{
+	text-align: right;
 }

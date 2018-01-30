@@ -10,33 +10,33 @@
 <ion-content padding>
 
   <div padding>
-  <ion-segment [(ngModel)]="segment">
-    <ion-segment-button value="founds">
-      发现
-    </ion-segment-button>
-    <ion-segment-button value="search">
-      查找
-    </ion-segment-button>
-  </ion-segment>
-</div>
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="founds"> 
+        发现
+      </ion-segment-button>
+      <ion-segment-button value="search">
+        查找
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
 <div [ngSwitch]="segment">
   <ion-list *ngSwitchCase="'founds'">
     <ion-card (click)="openOtherPage(1)">
-      <img src="/public/img/dance6.jpg"/>
+      <img src="/public/img/dance.jpg"/>
       <div class="card-title">文化</div>
-      <div class="card-subtitle">民族文化内容</div>
+      <div class="card-subtitle">有关文化简介</div>
     </ion-card>
     <ion-card (click)="openOtherPage(2)">
       <img src="/public/img/develop.jpg"/>
       <div class="card-title">交流</div>
       <div class="card-subtitle">交流中心</div>
     </ion-card>
-    <ion-card (click)="openOtherPage(3)">
-      <img src="/public/img/people.jpg"/>
-      <div class="card-title">个人中心</div>
-      <div class="card-subtitle"></div>
-    </ion-card>
+   <!--  <ion-card (click)="openOtherPage(3)">
+     <img src="/public/img/people.jpg"/>
+     <div class="card-title">个人中心</div>
+     <div class="card-subtitle"></div>
+   </ion-card> -->
 
   </ion-list>
 
@@ -45,7 +45,13 @@
     <!-- <culture-item></culture-item> -->
     <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
       <ion-item *ngFor="let item of items" (click)="openOtherPage(item)">
-        {{ item }}
+        
+            <ion-thumbnail item-start>
+              <img src="/public/img/dance.jpg">
+            </ion-thumbnail>
+            <h2>{{ item }}</h2>
+            <p>你好</p>
+            <button ion-button clear item-end>查看</button>
       </ion-item>
   </ion-list>
 </div>

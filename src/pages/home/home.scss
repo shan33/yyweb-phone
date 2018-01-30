@@ -6,24 +6,23 @@ ion-searchbar {
 	
 }
 
-ion-card {
+ion-card { 
     position: relative;
-    height: 30%;
-}
-
+    text-align: center;
+    height: 250px;
+} 
 .card-title {
     position: absolute;
-    top: 3%;
-    font-size: 2.0em;
-    width: 100%;
-    font-weight: bold;
-    color: #000;
-}
-
-.card-subtitle {
-    font-size: 1.0em;
-    position: absolute;
-    top: 25%;
-    width: 100%;
-    color: #000;
+    top: 6%; 
+    font-size: 2.0em; 
+    width: 100%; 
+    font-weight: bold; 
+    color: #555; 
+} 
+.card-subtitle { 
+    font-size: 1.0em; 
+    position: absolute; 
+    top: 22%; 
+    width: 100%; 
+    color: #777; 
 }
