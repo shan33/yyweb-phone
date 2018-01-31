@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
+import { PersonPage } from '../pages/person/person';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +34,7 @@ export class MyApp {
 
     this.pages = [
       { title: '主页', icon: 'home', component: HomePage },
-      { title: '个人中心', icon: 'person', component: HomePage},
+      { title: '个人中心', icon: 'person', component: PersonPage},
       { title: '联系我们', icon: 'at',  component: ListPage },
       { title: '登录/注册', icon: 'happy', component: LoginPage},
     ];
@@ -42,13 +43,13 @@ export class MyApp {
     events.subscribe('user:created', (user, time)=>{
       console.log(user.username, "  logined");
       this.app.user = user.split('-')[0];
-      this.pages[4].title = '退出登录';
+      this.pages[3].title = '退出登录';
     }); 
 
     //user exited
     events.subscribe('user:exit', (time)=>{
       console.log(this.app.user , " exited");
-      this.pages[4].title = '登录/注册';
+      this.pages[3].title = '登录/注册';
       this.app.user = '游客';
 //      backHome();
 

@@ -1,3 +1,16 @@
 page-talking {
 	
 }
+
+/*talking page： card*/
+.card-talking {
+	position: relative;
+	padding: 0 0;
+	height: 100%;
+	width: 100%;
+	text-align: left;
+}
+
+.card-content-talking {
+	text-overflow: ellipsis;
+}

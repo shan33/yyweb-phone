@@ -7,6 +7,27 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-icon  name="home"></ion-icon>
-  personPage
+	<!-- my info -->
+
+	<div>
+		<ion-img class="img-head" src="/public/img/dance6.jpg">
+		</ion-img>
+	</div>
+	<ion-card>
+		<ion-card-content>
+			<a>未读消息</a>：<ion-badge>34</ion-badge><br> 
+			<a>已读消息</a>：<ion-badge>34</ion-badge>
+			<hr>
+			<label for="">xulanshan</label>
+			<p>hfjdsknfnsj</p>
+			<hr>
+			<button ion-button ion-start color="light">
+				<ion-icon name="write"></ion-icon>
+				修改
+			</button>
+		</ion-card-content>
+	</ion-card>
+	<ion-infinite-scroll (ionInfinite)="doInfiniteMoreComment($event)">
+			   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+			</ion-infinite-scroll>
 </ion-content>

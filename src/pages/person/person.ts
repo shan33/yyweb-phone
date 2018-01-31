@@ -9,4 +9,11 @@ import { NavController } from 'ionic-angular'
 export class PersonPage {
 	constructor(public navCtrl: NavController)
 	{}	
+
+
+	/*get more infomation*/
+	doInfiniteMoreComment(event) {
+
+	}
 }
+

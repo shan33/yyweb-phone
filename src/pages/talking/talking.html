@@ -1,26 +1,24 @@
 <ion-header>
 	  <ion-navbar>
 	    <ion-title>
-	    	otherPage
+	    	交流
 	    </ion-title>
 	  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-icon  name="home"></ion-icon>
-  talkingPage
   <ion-list>
-  	<chat-item *ngFor="let chatItem of items">
-      <ion-card class="card-detail" *ngFor="let com of items">
-          <ion-card-header>
-            <p><b>{{com.username}}</b>: {{com.userTitle}}
-            <label>{{com.commentIndex}}</label>
-            <label>{{com.userIndex}}</label></p> 
-            <br>
-          </ion-card-header><br>
-        <ion-card-content class="card-content-detail">{{com.content}}
+  	<ion-item *ngFor="let chatItem of items">
+      <ion-card class="card-talking" *ngFor="let com of items" on-hold="holdMore($event)">
+        <ion-card-content class="card-content-talking">
+          <p><b>{{ com.username }}</b>: {{ com.userTitle }}
+            <label>{{ com.commentIndex }}</label>
+            <label>{{ com.userIndex }}</label></p> 
+            <hr>
+          fdhskjfhjkdshfghdsssssssssssssssssssssssssssssssssssskjvnfdmbvjfdhsiuyurewahfkjhdsjkaulahchdjsklancdjchjuhjdjoi
+          {{ com.content }}
          </ion-card-content>
       </ion-card>
-    </chat-item>
+    </ion-item>
   </ion-list>
 </ion-content>
