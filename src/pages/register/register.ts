@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Nav, IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 /**
  * Generated class for the RegisterPage page.
@@ -16,6 +16,8 @@ import { HttpClient } from '@angular/common/http';
 
 export class RegisterPage {
 
+  url: string;
+
 	passWatch: boolean = false;
 	register: any = {
   		checked: 'false',
@@ -28,7 +30,10 @@ export class RegisterPage {
   	};
 	
 	
-	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public nav: Nav, public http: HttpClient, public alertCtrl: AlertController) {}
+	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public nav: Nav, public http: HttpClient, public alertCtrl: AlertController) {
+    this.url = 'http://localhost:8080//Tujia';
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
@@ -53,13 +58,23 @@ export class RegisterPage {
   registerNewUser() {
 
   	
-    let userUp = 'name=' + this.register.username + 
-                 '&pass=' + this.register.userpass + 
+    let userUp = 'username=' + this.register.username + 
+                 '&userpass=' + this.register.userpass + 
                  '&minority=' + (this.register.minority?0:1); 
+
+    let userD = {username: this.register.username,   
+                 userpass: this.register.userpass, 
+                 minority: (this.register.minority?0:1) };
+
+    let headers = new HttpHeaders();
+    headers.append('Content-type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
+
   	let header = {
-        headers: {'Content-type': 'application/x-www-form-urlencoded'}
+        headers: headers
     };
-    this.http.post('http://127.0.0.1:8001/register', userUp, header).toPromise()
+    
+    this.http.post(this.url + '/user/add?', userD , header).toPromise()
     .then((res)=>{
       console.log(res);
       this.events.publish(

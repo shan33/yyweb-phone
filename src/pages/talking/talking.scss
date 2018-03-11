@@ -12,5 +12,11 @@ page-talking {
 }
 
 .card-content-talking {
+	white-space: nowrap;
 	text-overflow: ellipsis;
+	/*overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-clamp: 3;*/
 }
+

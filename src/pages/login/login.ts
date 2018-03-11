@@ -12,6 +12,8 @@ import { HomePage } from '../home/home';
 })
 export class LoginPage {
 
+  url: string;
+
   login: {loginButton: string};
  
   user: any = {
@@ -24,7 +26,7 @@ export class LoginPage {
   	this.login = {
     	loginButton: 'light',
     };
-
+    this.url = 'http://localhost:8080//Tujia';
     this.events.subscribe('user:registed', (user, time)=>{
       let utemp = user.split('-');
       console.log(utemp, ' --- 注册');
@@ -63,7 +65,7 @@ export class LoginPage {
         headers: {'Content-type': 'application/x-www-form-urlencoded'}
     };
 
-    this.http.post('http://127.0.0.1:8001/login', userUp, header).toPromise()
+    this.http.post(this.url + '/user/login', userUp, header).toPromise()
     .then((res)=>{
       console.log(res);
       loading.dismiss();
