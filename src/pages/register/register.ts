@@ -13,7 +13,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: 'register.html'
 })
 
-
 export class RegisterPage {
 
   url: string;
@@ -31,7 +30,7 @@ export class RegisterPage {
 	
 	
 	constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, public nav: Nav, public http: HttpClient, public alertCtrl: AlertController) {
-    this.url = 'http://localhost:8080//Tujia';
+    this.url = 'http://localhost:8080/'; // /Tujia/';
 
   }
 
@@ -62,33 +61,34 @@ export class RegisterPage {
                  '&userpass=' + this.register.userpass + 
                  '&minority=' + (this.register.minority?0:1); 
 
-    let userD = {username: this.register.username,   
-                 userpass: this.register.userpass, 
-                 minority: (this.register.minority?0:1) };
-
     let headers = new HttpHeaders();
     headers.append('Content-type', 'application/json');
-    headers.append('Access-Control-Allow-Origin', '*');
 
   	let header = {
-        headers: headers
+        //headers: headers
+        headers: {'Content-type': 'application/x-www-form-urlencoded'}
     };
     
-    this.http.post(this.url + '/user/add?', userD , header).toPromise()
-    .then((res)=>{
-      console.log(res);
-      this.events.publish(
-        'user:registed', this.register.username + '-' + this.register.userpass, Date.now()
-      );
-      this.nav.pop();      
-      
-    }).catch((err)=>{
-      console.error(err);
-      let regFail = this.alertCtrl.create({
+    let regFail = this.alertCtrl.create({
           title: '用户注册失败',
           buttons: [{text: '知道了', role: 'cancle'}]
         });
+
+    this.http.post(this.url + 'user/add', userUp , header).toPromise()
+    .then((res)=>{
+      console.log(res);
+      if (res) {
+        this.events.publish(
+          'user:registed', this.register.username + '-' + this.register.userpass, Date.now()
+        );
+        this.nav.pop();     
+      } else {
         regFail.present();
+      }
+      
+    }).catch((err)=>{
+      console.error(err);
+      regFail.present();
     });
   }
 }

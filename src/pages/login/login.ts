@@ -26,7 +26,7 @@ export class LoginPage {
   	this.login = {
     	loginButton: 'light',
     };
-    this.url = 'http://localhost:8080//Tujia';
+    this.url = 'http://localhost:8080'; // /Tujia';
     this.events.subscribe('user:registed', (user, time)=>{
       let utemp = user.split('-');
       console.log(utemp, ' --- 注册');
@@ -59,26 +59,32 @@ export class LoginPage {
 
     loading.present();
 
-    let userUp = 'name=' + this.user.username + 
-                 '&pass=' + this.user.userpass;
+    let userUp = 'username=' + this.user.username + 
+                 '&userpass=' + this.user.userpass;
     let header = {
         headers: {'Content-type': 'application/x-www-form-urlencoded'}
     };
 
-    this.http.post(this.url + '/user/login', userUp, header).toPromise()
-    .then((res)=>{
-      console.log(res);
-      loading.dismiss();
-      this.events.publish('user:created', this.user.username, Date.now());
-       this.nav.setRoot(HomePage);
-    }).catch((err)=>{
-      console.error(err);
-      loading.dismiss();
-      let logFail = this.alertCtrl.create({
+    let logFail = this.alertCtrl.create({
           title: '用户名或者密码错误',
           buttons: [{text: '知道了', role: 'cancle'}]
         });
+
+    this.http.post(this.url + '/user/login', userUp, header).toPromise()
+    .then((res)=>{
+      console.log(res);
+      if (res) {
+        loading.dismiss();
+        this.events.publish('user:created', this.user.username, Date.now());
+          this.nav.setRoot(HomePage);
+      } else {
         logFail.present();
+        loading.dismiss();
+      }
+    }).catch((err)=>{
+      console.error(err);
+      loading.dismiss();
+      logFail.present();
     });
     
     }
