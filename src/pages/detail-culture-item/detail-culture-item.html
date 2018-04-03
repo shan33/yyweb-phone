@@ -22,9 +22,10 @@
 
 <ion-content padding class="cards-bg">
 	
-	<div>
-		<ion-img src="../public/img/drink.jpg"></ion-img>
+	<div #pic>
+		<ion-img src="{{img.url}}" (tap)="showMorePicsBox()"></ion-img>
 	</div>
+
 	<ion-segment [(ngModel)]="detailChoose" color="primary">
 	    <ion-segment-button value="comment" (click)="selectedComments()">
 	      评论
@@ -41,14 +42,16 @@
 			<ion-card class="card-detail" *ngFor="let com of items" >
 		   		<ion-card-header class="card-title-detail">
 				    <p>
-				    	<b>{{com.username}}</b>:
-				    	<label>{{com.commentIndex}}</label>
-				    	<label>{{com.userIndex}}</label>{{com.content}}
+				    	<b>{{com.NAME}}</b>:
+				    	<label>{{com.ID}}</label>
+				    	<label>{{com.POST_USER}}</label>
+						{{com.TITLE}}
+				    	<br>{{com.CONTENT}}
 				    </p> 
 				    <br/><hr/>
-				    <a (click)="response()">回复</a>
+				    <a (click)="respnose()">回复</a>
 					<a>举报</a><br/>
-					<input class="{{responseBox? show:hidden}}" placeholder="to {{com.username}}: ">
+					<input class="{{responseBox? show:hidden}}" placeholder="to {{com.NAME}}: ">
 				</ion-card-header><br/>
 				
 			</ion-card>
@@ -58,8 +61,7 @@
 			</ion-infinite-scroll>
 		</div>
 		<div *ngSwitchCase="'detail'">
-		   	<!-- <p>详情</p> -->
-			
+				<p>{{detailItem.more.info1}}</p><hr>
 		</div>
 	</div>
 </ion-content>

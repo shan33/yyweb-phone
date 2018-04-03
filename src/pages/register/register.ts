@@ -3,6 +3,7 @@ import { Nav, IonicPage, NavController, NavParams, Events, AlertController } fro
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+//import { Url } from '../../lib/js'
 /**
  * Generated class for the RegisterPage page.
  */

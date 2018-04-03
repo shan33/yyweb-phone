@@ -11,13 +11,13 @@
   	<ion-item *ngFor="let chatItem of items">
       <ion-card class="card-talking" *ngFor="let com of items" on-hold="holdMore($event)">
         <ion-card-content class="card-content-talking">
-          <p><b>{{ com.username }}</b>: {{ com.userTitle }}
-            <label>{{ com.commentIndex }}</label>
-            <label>{{ com.userIndex }}</label></p> 
+          <p><b>{{ com.NAME }}</b>: {{ com.TITLE }}
+            <label>{{ com.ID }}</label>
+            <label>{{ com.POST_USER }}</label></p> 
             <hr>
             <p>
-          fdhskjfhjkdshfghdsssssssssssssssssssssssssssssssssssskjvnfdmbvjfdhsiuyurewahfkjhdsjkaulahchdjsklancdjchjuhjdjoi
-          {{ com.content }}</p>
+          {{ com.CONTENT }}</p>
+          <small>{{com.TIME}}</small>
          </ion-card-content>
       </ion-card>
     </ion-item>

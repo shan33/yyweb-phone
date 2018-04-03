@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController  } from 'ionic-angular'
+import { NavController, NavParams, ModalController, Events  } from 'ionic-angular'
 
 import { DetailCultureItemPage } from '../detail-culture-item/detail-culture-item'
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'page-culture',
@@ -16,7 +18,7 @@ import { DetailCultureItemPage } from '../detail-culture-item/detail-culture-ite
 export class CulturePage {
 	cultureTypes: Array<{src: string, alt: string, title: string, subtitle: string, index: string}>;
 
-	constructor(public navCtrl: NavController, public NavParams: NavParams, private modalCtrl: ModalController ) {
+	constructor(public navCtrl: NavController, public NavParams: NavParams, private modalCtrl: ModalController, private events: Events, private http: HttpClient ) {
 		this.cultureTypes = [];
 		let location = '/public/img/';
 		this.cultureTypes = [
@@ -30,14 +32,13 @@ export class CulturePage {
 			{src: location + 'map.jpg', alt: '', title: '地图', subtitle: '地理位置介绍', index: '8'},
 			{src: location + 'marry.jpg', alt: '', title: '婚假', subtitle: '婚姻传统介绍', index: '9'}
 		];
-
 	}	
 
 	openDetailPage(event) {
 		let index = event.target.nextSibling.nextSibling.innerHTML-1;
-		console.log(index);
-		let detailCultureItem = this.modalCtrl.create(DetailCultureItemPage, {data: this.cultureTypes[index]});
-		detailCultureItem.present();
 
+		let detailCultureItem = this.modalCtrl.create(DetailCultureItemPage, {data: this.cultureTypes[index], idx: index});
+
+		detailCultureItem.present();
 	}
 }

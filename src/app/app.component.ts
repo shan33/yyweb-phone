@@ -11,8 +11,8 @@ import { PersonPage } from '../pages/person/person';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
-  
+
+export class MyApp {  
 
   @ViewChild(Nav) nav: Nav;
 

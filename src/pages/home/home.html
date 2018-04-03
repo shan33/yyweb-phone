@@ -49,8 +49,9 @@
             <ion-thumbnail item-start>
               <img src="/public/img/dance.jpg">
             </ion-thumbnail>
-            <h2>{{ item }}</h2>
-            <p>你好</p>
+            <h2>{{ item.abstract }}</h2>
+            <p>{{ item.name}}</p>
+            <a href="{{item.url}}"></a>
             <button ion-button clear item-end>查看</button>
       </ion-item>
   </ion-list>

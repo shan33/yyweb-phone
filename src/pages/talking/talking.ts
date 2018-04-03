@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 
+import { NavController, ModalController, Events, AlertController } from 
 'ionic-angular';
+//import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: 'page-talking',
@@ -9,8 +12,10 @@ import { NavController, ModalController } from
 
 export class TalkingPage {
 	items: any;
-	constructor(public navCtrl: NavController, private modal: ModalController) {
-		this.items = [{
+	url:string = 'http://localhost:8080'; // /Tujia';
+
+	constructor(public navCtrl: NavController, private modal: ModalController, private alertCtrl: AlertController, private http: HttpClient) {
+		/*this.items = [{
 			username: 'xls',
 			commentIndex: '1',
 			userIndex: '1',
@@ -25,8 +30,33 @@ export class TalkingPage {
 			userTitle: 'testTitle',
 			content: 'test'
 		}
-		];
+		];*/
 	}
+
+	ionViewDidLoad() {
+	    let logFail = this.alertCtrl.create({
+	          title: '网络请求错误',
+	          buttons: [{text: '知道了', role: 'cancle'}]
+	        });
+
+	    this.http.get(this.url + '/talking/getPosts', {
+	      headers: {'Content-type': 'application/x-www-form-urlencoded'}
+	    }).toPromise()
+	      .then((res)=>{
+	        console.log(res);
+	        if (res) {
+	          this.items = res;
+	          //this.detailItem.more = res.info;
+
+	        } else {
+	          logFail.present();
+	        }
+	      }).catch((err)=>{
+	        console.error(err);
+	        logFail.present();
+	      });
+	  }
+
 
 	/*get communication details*/
 	initItems() {
